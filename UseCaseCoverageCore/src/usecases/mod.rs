@@ -959,7 +959,7 @@ fn test_one() {}
             .expect("invalid result should be present");
         assert!(!invalid.is_valid);
         let issue = invalid.issue.as_ref().expect("invalid file should include issue");
-        assert!(!issue.message.trim().is_empty());
+        assert_ne!(issue.message.trim(), "");
         assert!(issue.line.is_some() || issue.column.is_some());
     }
 
@@ -1018,7 +1018,7 @@ fn test_one() {}
 
         let matcher = super::ArtifactIdMatcher::from_features(&features);
         assert!(matcher.matcher.is_none());
-        assert!(matcher.find_artifact_ids("ucc-feat-1").is_empty());
+        assert_eq!(matcher.find_artifact_ids("ucc-feat-1"), Vec::<String>::new());
     }
 
     #[test]
